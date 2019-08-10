@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dice Roller for DnD</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {font-size: 14px;}
+            h1 {font-size: 20px; margin: 5px; float: left;}
+            p {font-size: 12px; }
+            #rollType {float: left; margin-bottom: 10px;}
+            #rolls input {width: 30px; margin: 2px;}
+            form {float: left; margin: 5px;}
+            table {float: right; font-size: 14px; margin: 15px;}
+            button {margin: 5px;}            
+        </style>
+        <script src="DieRoller.js"></script>
+    </head>
+    <body>
+        <form id="attackForm">
+        <h1>Roll for Attack</h1>
+        
+            <div id="rollType">
+                <input type="radio" id="advantage" name="rollType" value="advantage">
+                <label for="advantage">Advantage</label>
+                <input type="radio" id="neither" name="rollType" checked="checked" value="neither">
+                <label for="neither">Neither</label>
+                <input type="radio" id="disadvantage" name="rollType" value="disadvantage">
+                <label for="disadvantage">Disadvantage</label>
+            
+            <div id="rolls">
+            <label for="roll1">Roll 1</label>
+            <input type="text" name="roll" id="roll1">
+            <br>
+            <label for="roll2">Roll 2</label>
+            <input type="text" name="roll" id="roll2">
+            <br>
+            <label for="finalRoll">Result</label>
+            <input type="text" name="roll" id="finalRoll">
+            </div>
+                <button type="button" id="rollAttack">Roll</button>
+                <button type="button" id="clearAttack">Clear</button>
+            </div>
+            
+        </form>
+        
+        <br>
+        
+        <form name="damageForm">
+            
+        <h1>Roll for Damage or Healing</h1>
+        
+            <p>Choose the number of dice</p>
+            
+            <div>
+                <select id="dice">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            
+            <p>Choose the die type</p>
+            
+            <div>
+                <select id="type">
+                    <option value="4">d4</option>
+                    <option value="6">d6</option>
+                    <option value="8">d8</option>
+                    <option value="10">d10</option>
+                    <option value="12">d12</option>
+                </select>
+            </div>
+            
+            <div>
+                <button type="button" id="rollDamage">Roll</button>
+                <button type="button" id="clearDamage">Clear</button>
+            </div>
+            
+         </form>  
+        
+            <table id="totals"></table>
+    </body>
+</html>

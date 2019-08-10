@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+
+<head>
+    <title>Character</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles/characterStyles.css">
+    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="js/characterStats.js"></script>
+    <script type="text/javascript" src="js/characterWeapons.js"></script>
+    <script type="text/javascript" src="js/documentAndEvents.js"></script>
+    <script type="text/javascript" src="js/diceRoller.js"></script>
+    <!--script src="app.js"></script-->
+</head>
+
+<body>
+    
+<div class="tabs">
+        <ul class="tab-links">
+            <li class="active"><a href="#character">Character</a></li>
+            <li><a href="#weapons">Weapons</a></li>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#spells">Spells</a></li>
+            <li><a href="#items">Items</a></li>
+            <li><a href="#dice">Dice</a></li>
+        </ul>
+
+    <div class="tabs">
+        <div id="character" class="tab active">
+                <h1>Character</h1>
+                <br>
+                <label>Play as</label>
+                <select id="chooseCharacter" name="chooseCharacter">
+                    <option value="chooseCharacter" id="choose">Choose a Character</option>
+                </select>
+                <button id="btnSelectCharacter">Get Character</button>
+                <br>
+            <form id="characterForm">
+                
+                <br>
+
+                <label>Character Name</label>
+                <input type="text" id="characterName" name="characterName">
+                <label>Class</label>
+                <input type="text" id="className">
+                <label>Level</label>
+                <input type="text" id="totalLevel">
+
+                <br>
+
+                <label for="prof">Proficiency Bonus</label>
+                <input type="text" id="profBonus">
+
+                <br>
+
+                <table id="charMods">
+                    <tr>
+                        <th>Ability Scores</th>
+                        <th></th>
+                        <th>Mods</th>
+                        <th></th>
+                        <th></th>
+                        <th>Saves</th>
+                    </tr>
+                    <tr id="Str">
+                        <td>
+                            <input type="text" id="strength">
+                        </td>
+                        <td><button class="ablCheck">Str Check</button></td>
+                        <td>
+                            <input type="text" id="modStr">
+                        </td>
+                        <td>Strength</td>
+                        <td>
+                            <input type="checkbox" id="profStr" checked="false" checked disabled>
+                        </td>
+                        <td><button class="ablSave">Str Save</button></td>
+                        <td>
+                            <input type="text" id="saveStr">
+                        </td>
+                    </tr>
+                    <tr id="Dex">
+                        <td>
+                            <input type="text" id="dexterity" checked="false">
+                        </td>
+                        <td><button class="ablCheck">Dex Check</button></td>
+                        <td>
+                            <input type="text" id="modDex">
+                        </td>
+                        <td>Dexterity</td>
+                        <td>
+                            <input type="checkbox" id="profDex" checked disabled>
+                        </td>
+                        <td><button class="ablSave">Dex Save</button></td>
+                        <td>
+                            <input type="text" id="saveDex">
+                        </td>
+                    </tr>
+                    <tr id="Con">
+                        <td>
+                            <input type="text" id="constitution">
+                        </td>
+                        <td><button class="ablCheck">Con Check</button></td>
+                        <td>
+                            <input type="text" id="modCon">
+                        </td>
+                        <td>Constitution</td>
+                        <td>
+                            <input type="checkbox" id="profCon" checked disabled>
+                        </td>
+                        <td><button class="ablSave">Con Save</button></td>
+                        <td>
+                            <input type="text" id="saveCon">
+                        </td>
+                    </tr>
+                    <tr id="Int">
+                        <td>
+                            <input type="text" id="intelligence">
+                        </td>
+                        <td><button class="ablCheck">Int Check</button></td>
+                        <td>
+                            <input type="text" id="modInt">
+                        </td>
+                        <td>Intelligence</td>
+                        <td>
+                            <input type="checkbox" id="profInt" checked disabled>
+                        </td>
+                        <td><button class="ablSave">Int Save</button></td>
+                        <td>
+                            <input type="text" id="saveInt">
+                        </td>
+                    </tr>
+                    <tr id="Wis">
+                        <td>
+                            <input type="text" id="wisdom">
+                        </td>
+                        <td><button class="ablCheck">Wis Check</button></td>
+                        <td>
+                            <input type="text" id="modWis">
+                        </td>
+                        <td>Wisdom</td>
+                        <td>
+                            <input type="checkbox" id="profWis" checked disabled>
+                        </td>
+                        <td><button class="ablSave">Wis Save</button></td>
+                        <td>
+                            <input type="text" id="saveWis">
+                        </td>
+                    </tr>
+                    <tr id="Cha">
+                        <td>
+                            <input type="text" id="charisma">
+                        </td>
+                        <td><button class="ablCheck">Cha Check</button></td>
+                        <td>
+                            <input type="text" id="modCha">
+                        </td>
+                        <td>Charisma</td>
+                        <td>
+                            <input type="checkbox" id="profCha" checked disabled>
+                        </td>
+                        <td><button class="ablSave">Cha Save</button></td>
+                        <td>
+                            <input type="text" id="saveCha">
+                        </td>
+                    </tr>
+                </table>
+
+                <table id="skillMods">
+
+                    <tr>
+                        <th>Skill</th>
+                        <th>Prof</th>
+                        <th>Exp</th>
+                        <th>Mod</th>
+                        <th>Skill</th>
+                        <th>Prof</th>
+                        <th>Exp</th>
+                        <th>Mod</th>
+                    </tr>
+                    
+                    <tr>
+                        <td><button id="Acrobatics" class="skill">Acrobatics (dex)</button></td>
+                        <td>
+                            <input type="checkbox" id="profAcrobatics" checked disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="expAcrobatics" checked disabled>
+                        </td>
+                        <td><input type="text" id="modAcrobatics"></td>
+                        <td><button id="Medicine" class="skill">Medicine (wis)</button></td>
+                        <td>
+                            <input type="checkbox" id="profMedicine" checked disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="expMedicine" checked disabled>
+                        </td>
+                        <td><input type="text" id="modMedicine"></td>
+                    </tr>
+                    <tr>
+                        <td><button id="Animal" class="skill">Animal Handling (wis)</button></td>
+                        <td>
+                            <input type="checkbox" id="profAnimal" checked disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="expAnimal" checked disabled>
+                        </td>
+                        <td><input type="text" id="modAnimal"></td>
+                        <td><button id="Nature" class="skill">Nature (int)</button></td>
+                        <td>
+                            <input type="checkbox" id="profNature" checked disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="expNature" checked disabled>
+                        </td>
+                        <td><input type="text" id="modNature"></td>
+                    </tr>
+                    <tr>
+                        <td><button id="Arcana" class="skill">Arcana (int)</button></td>
+                        <td>
+                            <input type="checkbox" id="profArcana" checked disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="expArcana" checked disabled>
+                        </td>
+                        <td><input type="text" id="modArcana"></td>
+                        <td><button id="Perception" class="skill">Perception (wis)</button></td>
+                        <td>
+                            <input type="checkbox" id="profPerception" checked disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="expPerception" checked disabled>
+                        </td>
+                        <td><input type="text" id="modPerception"></td>
+                    </tr>
+                    <tr>
+                        <td><button id="Athletics" class="skill">Athletics (str)</button></td>
+                        <td>
+                            <input type="checkbox" id="profAthletics" checked disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="expAthletics" checked disabled>
+                        </td>
+                        <td><input type="text" id="modAthletics"></td>
+                        <td><button id="Performance" class="skill">Performance (cha)</button></td>
+                        <td>
+                            <input type="checkbox" id="profPerformance" checked disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="expPerformance" checked disabled>
+                        </td>
+                        <td><input type="text" id="modPerformance"></td>
+                    </tr>
+                    <tr>
+                        <td><button id="Deception" class="skill">Deception (cha)</button></td>
+                        <td>
+                            <input type="checkbox" id="profDeception" checked disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="expDeception" checked disabled>
+                        </td>
+                        <td><input type="text" id="modDeception"></td>
+                        <td><button id="Persuasion" class="skill">Persuasion (cha)</button></td>
+                        <td>
+                            <input type="checkbox" id="profPersuasion" checked disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="expPersuasion" checked disabled>
+                        </td>
+                        <td><input type="text" id="modPersuasion"></td>
+                    </tr>
+                    <tr>
+                        <td><button id="History" class="skill">History (int)</button></td>
+                        <td>
+                            <input type="checkbox" id="profHistory" checked disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="expHistory" checked disabled>
+                        </td>
+                        <td><input type="text" id="modHistory"></td>
+                        <td><button id="Religion" class="skill">Religion (int)</button></td>
+                        <td>
+                            <input type="checkbox" id="profReligion" checked disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="expReligion" checked disabled>
+                        </td>
+                        <td><input type="text" id="modReligion"></td>
+                    </tr>
+                    <tr>
+                        <td><button id="Insight" class="skill">Insight (wis)</button></td>
+                        <td>
+                            <input type="checkbox" id="profInsight" checked disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="expInsight" checked disabled>
+                        </td>
+                        <td><input type="text" id="modInsight"></td>
+                        <td><button id="Sleight" class="skill">Sleight of Hand (dex)</button></td>
+                        <td>
+                            <input type="checkbox" id="profSleight" checked disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="expSleight" checked disabled>
+                        </td>
+                        <td><input type="text" id="modSleight"></td>
+                    </tr>
+                    <tr>
+                        <td><button id="Intimidation" class="skill">Intimidation (cha)</button></td>
+                        <td>
+                            <input type="checkbox" id="profIntimidation" checked disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="expIntimidation" checked disabled>
+                        </td>
+                        <td><input type="text" id="modIntimidation"></td>
+                        <td><button id="Stealth" class="skill">Stealth (dex)</button></td>
+                        <td>
+                            <input type="checkbox" id="profStealth" checked disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="expStealth" checked disabled>
+                        </td>
+                        <td><input type="text" id="modStealth"></td>
+                    </tr>
+                    <tr>
+                        <td><button id="Investigation" class="skill">Investigation (int)</button></td>
+                        <td>
+                            <input type="checkbox" id="profInvestigation" checked disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="expInvestigation" checked disabled>
+                        </td>
+                        <td><input type="text" id="modInvestigation"></td>
+                        <td><button id="Survival" class="skill">Survival (wis)</button></td>
+                        <td>
+                            <input type="checkbox" id="profSurvival" checked disabled>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="expSurvival" checked disabled>
+                        </td>
+                        <td><input type="text" id="modSurvival"></td>
+                    </tr>
+                </table>
+
+            </form>
+        </div>
+
+        <div id="weapons" class="tab">
+            <h1>Weapon Info</h1>
+            <br>
+            <label>Character</label>
+                <input type="text" id="characterName" name="characterName">
+                <br>
+                <label>Character weapons</label>
+                <select id="chooseWeapon" name="chooseWeapon">
+                    <option value="chooseWeapon" id="chooseWeapon">Weapons</option>
+                </select>
+                <button id="btnSelectWeapon">Select Weapon</button>
+                <br>        
+                <label>Quantity</label>
+                <input type="number" id="quantity" class="weapon">
+                <br>
+            <form id="weaponsForm">
+                
+                <label id="proficient" name="proficient">Proficient</label>
+                <input type="checkbox" id="profWeapon" name="profWeapon">
+                <br>
+                <!--input type="text" id="searchWeapon" name="searchWeapon"-->
+                <!--<button id="btnSearchWeapon">Search for a weapon</button>-->
+                <label>Weapon Type</label>
+                <input type="text" id="weaponType" class="weapon">
+                <br>
+                <label>Damage</label>
+                <input type="text" id="weaponDamage" class="weapon">
+                <label>Damage Type</label>
+                <input type="text" id="damageType" class="weapon">
+                <br>
+                <label>Properties</label>
+                <input type="text" id="weaponProps" class="weapon" checked disabled>
+                <br>
+                <label>Range</label>
+                <input type="text" id="weaponRange" class="weapon">
+                <br>
+                <label>Attack Bonus</label>
+                <input type="text" id="weaponAttackBonus" class="weapon">
+                <button id="btnWeaponAttack">Attack with </button>
+                <input type="text" id="chosenWeapon" class="weapon">
+            </form>
+        </div>
+
+<br>
+
+        <div id="tools" class="tab">
+            <h1>Tools information coming soon</h1>
+        </div>
+
+<br>
+
+        <div id="spells" class="tab">
+            <h1>Spell information coming soon</h1>
+        </div>
+
+<br>
+
+        <div id="items" class="tab">
+            <h1>Items information coming soon</h1>
+        </div>
+
+<br>
+
+        <div id="dice" class="tab">
+            <h1>Dice roller</h1>
+            <br>
+            <form id="dTwentyForm">
+                <h1>Attack/Skills/Saving Throws</h1>
+                
+                    <div>
+                        <label>Bonus</label>
+                        <input type="text" id="rollBonus">
+                        <label>for</label>
+                        <input id="rollType">
+                        <br>
+                        <input type="radio" id="advantage" name="rollType" value="advantage">
+                        <label for="advantage">Advantage</label>
+                        <input type="radio" id="neither" name="rollType" checked="checked" value="neither">
+                        <label for="neither">Neither</label>
+                        <input type="radio" id="disadvantage" name="rollType" value="disadvantage">
+                        <label for="disadvantage">Disadvantage</label>
+                    <br>
+
+                        <div id="rolls">
+                            <label for="roll1">Roll 1</label>
+                            <input type="text" name="roll" id="roll1">
+                            <br>
+                            <label for="roll2">Roll 2</label>
+                            <input type="text" name="roll" id="roll2">
+                            <br>
+                            <label for="rollResult">Roll Used</label>
+                            <input type="text" name="roll" id="rollUsed">
+                            <br>
+                            <label>Final</label>
+                            <input type="text" id="final">
+                        
+                            <br>
+
+                            <button type="button" id="btnRollDTwenty">Roll</button>
+                            <button type="button" id="btnClearDTwenty">Clear</button>
+
+                        </div>
+                        
+                    </div> 
+            </form>
+        </div>
+    </div>
+</div>
+        
+</body>
+
+</html>
